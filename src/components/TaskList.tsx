@@ -20,12 +20,12 @@ export function TaskList() {
     };
 
     const newTasks = {
-      id: Math.floor(Math.random()),
+      id: Math.random(),
       title: newTaskTitle,
       isComplete: false
     };
 
-    setTasks([newTasks]);
+    setTasks(initialState => [...initialState, newTasks]);
     setNewTaskTitle('');
   };
 
@@ -34,7 +34,9 @@ export function TaskList() {
   };
 
   const handleRemoveTask = (id: number) => {
-    // Remova uma task da listagem pelo ID
+    const filteredId = tasks.filter(task => task.id !== id);
+
+    setTasks(filteredId);
   };
 
   return (
